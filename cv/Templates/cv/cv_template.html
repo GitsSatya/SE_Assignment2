@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - {{ contact.name }}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #2E86C1;
+            margin-top: 20px;
+        }
+        p {
+            margin-bottom: 5px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .sub-heading {
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Contact Information -->
+        <div class="section">
+            <h1>{{ contact.name }}</h1>
+            <p><strong>Phone:</strong> {{ contact.phone_number }}</p>
+            <p><strong>Email:</strong> {{ contact.email }}</p>
+            <p><strong>Address:</strong> {{ contact.address }}</p>
+        </div>
+
+        <!-- Professional Summary -->
+        <div class="section">
+            <h2>Professional Summary</h2>
+            <p>{{ contact.professional_summary }}</p>
+        </div>
+
+        <!-- Education -->
+        <div class="section">
+            <h2>Education</h2>
+            {% for edu in education %}
+                <div class="sub-heading">{{ edu.degree }} - {{ edu.institution }}</div>
+                <p>{{ edu.start_date }} - {{ edu.end_date }}</p>
+                <p>CGPA: {{ edu.cgpa }}</p>
+            {% endfor %}
+        </div>
+
+        <!-- Professional Experience -->
+        <div class="section">
+            <h2>Professional Experience</h2>
+            {% for exp in experience %}
+                <div class="sub-heading">{{ exp.job_title }} - {{ exp.company }}</div>
+                <p>{{ exp.start_date }} - {{ exp.end_date }}</p>
+                <ul>
+                    {% for detail in exp.details %}
+                        <li>{{ detail }}</li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
+
+        <!-- Skills -->
+        <div class="section">
+            <h2>Skills</h2>
+            <ul>
+                {% for skill in skills %}
+                    <li>{{ skill.name }} - {{ skill.level }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Certifications -->
+        <div class="section">
+            <h2>Certifications</h2>
+            <ul>
+                {% for cert in certifications %}
+                    <li>{{ cert.name }} [{{ cert.issuer }}]</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Research Experience -->
+        <div class="section">
+            <h2>Research Experience</h2>
+            <p>{{ research_experience.topic }}</p>
+            <p><strong>Conference:</strong> {{ research_experience.conference }}</p>
+            <p><strong>Publication:</strong> {{ research_experience.publication }}</p>
+        </div>
+
+        <!-- Projects -->
+        <div class="section">
+            <h2>Projects</h2>
+            {% for project in projects %}
+                <div class="sub-heading">{{ project.name }}</div>
+                <p>{{ project.description }}</p>
+            {% endfor %}
+        </div>
+
+        <!-- Leadership & Volunteer Experience -->
+        <div class="section">
+            <h2>Leadership & Volunteer Experience</h2>
+            {% for volunteer in volunteer_experiences %}
+                <div class="sub-heading">{{ volunteer.role }} - {{ volunteer.organization }}</div>
+                <p>{{ volunteer.description }}</p>
+            {% endfor %}
+        </div>
+
+        <!-- Awards and Achievements -->
+        <div class="section">
+            <h2>Awards and Achievements</h2>
+            <ul>
+                {% for award in awards %}
+                    <li>{{ award.title }} - {{ award.issuer }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Links -->
+        <div class="section">
+            <h2>Links</h2>
+            <ul>
+                {% for link in links %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
